@@ -8,20 +8,19 @@ app.use(expressLayouts)
 app.use(express.static("public"))
 
 app.get("/",(req, res) => {
-    res.render('about',{title: "About", layout: "main"});
+    res.render('info',{title: "Info", layout: "main"});
 } )
-app.get("/topFilm",(req, res) => {
-    res.render('topFilm',{title: "TopFilm", layout: "main"});
+app.get("/topGame",(req, res) => {
+    res.render('topGame',{title: "TopFilm", layout: "main"});
 } )
 app.get("/list", (req, res) => {
     res.json({
-        status: "success",
-        message: "List Film",
-        data: [{No: "1.", Film:"HIM"},
-            {No: "2.", Film:"One Battle After Another"},
-            {No: "3.", Film:"The Long Walk"},
-            {No: "4.", Film:"A Big Bold Beautiful Jurney"},
-            {No: "5.", Film:"Weapons"}]
+        pesan: ['List Game Dengan Jumlah Pemainnya'],
+        data: [{No: "1.", Game:"Fortnite", Pemain: 30950114},
+            {No: "2.", Game:"Roblox",Pemain: 27718738},
+            {No: "3.", Game:"Minecraft",Pemain: 23767529},
+            {No: "4.", Game:"League of Legends",Pemain: 11386716 },
+            {No: "5.", Game:"Counter-Strike 2",Pemain: 4279682}]
     })
 })
 app.listen(port,()=> {
