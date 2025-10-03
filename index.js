@@ -11,7 +11,7 @@ app.get("/",(req, res) => {
     res.render('info',{title: "Info", layout: "main"});
 } )
 app.get("/topGame",(req, res) => {
-    res.render('topGame',{title: "TopFilm", layout: "main"});
+    res.render('topGame',{title: "TopGame", layout: "main"});
 } )
 app.get("/list", (req, res) => {
     res.json({
