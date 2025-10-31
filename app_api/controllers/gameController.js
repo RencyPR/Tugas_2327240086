@@ -1,4 +1,4 @@
-// impor model Prodi
+// impor model  Game
 const gameSchema = require("../models/game")
 
 // fungsi untuk mengambil isi collection game (GET)
