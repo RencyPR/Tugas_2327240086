@@ -13,8 +13,8 @@ router.get("/:id",gameController.getGameById)
 //route POST game
 router.post("/",gameController.createGame)
 
-//route PUT game berdasarkan ID
-router.put("/:id",gameController.updateGameById)
+//route PATCH game berdasarkan ID
+router.patch("/:id",gameController.updateGameById)
 
 // route Delete game berdasarakan ID
 router.delete("/:id",gameController.deleteGameById)

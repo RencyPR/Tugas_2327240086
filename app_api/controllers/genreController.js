@@ -44,27 +44,35 @@ try{
     }
 }
 
-// fungsi untuk mengubah isi collection genre (PUT)
+// fungsi untuk mengubah sebagian isi collection genre (PATCH)
 const updateGenreById = async (req, res) => {
     try {
+        // Cari genre berdasarkan ID
+        const result = await genreSchema.findById(req.params.id);
 
-        // GET collection genre berdasarkan parameter id
-        const result = await genreSchema.findById(req.params.id)
-        if(!result) {  // Jika data fakultas tidak ada pada MongoDB
-            res.status(404).json({ message: "Genre tidak ditemukan"})
-        } else { // Jika data fakultas ada
-            // jika ada request perubahan genre
-            if(req.body.genre != null) {
-                result.genre = req.body.genre
-            }
-            // update data genre 
-            const updateGanre = await result.save()
-            res.status(200).json(updateGanre)
+        // Jika tidak ditemukan
+        if (!result) {
+            return res.status(404).json({ message: "Genre tidak ditemukan" });
         }
+
+        // Update field yang dikirim saja (PATCH behavior)
+        if (req.body.genre !== undefined) {
+            result.genre = req.body.genre;
+        }
+
+        // Simpan perubahan
+        const updatedGenre = await result.save();
+
+        res.status(200).json({
+            message: "Genre berhasil diperbarui",
+            data: updatedGenre
+        });
+
     } catch (error) {
-        res.status(500).json({message: error.message})
+        res.status(500).json({ message: error.message });
     }
-}
+};
+
 // fungsi menghapus isi collection genre (DELETE)
 const deleteGenreById = async (req, res) => {
     try {
@@ -83,6 +91,7 @@ const deleteGenreById = async (req, res) => {
         res.status(500).json({message: error})
     }
 }
+
 // export
 module.exports = {
     getAllGenre,
